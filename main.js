@@ -20,6 +20,7 @@ async function fetchRepos() {
     const data = await res.json();
     state.repos = data
       .filter((repo) => !repo.fork)
+      .filter((repo) => repo.name.toLowerCase() !== "portfolio")
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
     render();
