@@ -55,7 +55,6 @@ function render() {
     .map((repo, i) => {
       const index = String(i + 1).padStart(2, "0");
       const description = repo.description || "No description provided.";
-      const stars = repo.stargazers_count;
       const language = repo.language || "—";
 
       return `
@@ -68,7 +67,6 @@ function render() {
             <p class="ledger__description">${description}</p>
             <div class="ledger__meta">
               <span>${language}</span>
-              <span>${stars} star${stars === 1 ? "" : "s"}</span>
               <span>Updated ${formatDate(repo.updated_at)}</span>
             </div>
           </div>
