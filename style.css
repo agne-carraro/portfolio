@@ -1,0 +1,176 @@
+/* ---------------------------------------------
+   Tokens
+--------------------------------------------- */
+:root {
+  --paper: #EDEAE3;
+  --ink: #1C1B19;
+  --ink-soft: #5A574F;
+  --accent: #2B4570;
+  --hairline: #C9C4B8;
+
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  --meta: "Courier New", Courier, monospace;
+
+  --hairline-width: 0.0625rem; /* 1px equivalent, expressed relatively */
+  --max-width: 48rem;
+  --gutter: 6%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* respects user's browser default */
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.5;
+  padding: 0 var(--gutter);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus {
+  text-decoration-thickness: 0.1em;
+}
+
+a:focus-visible {
+  outline: 0.125rem solid var(--accent);
+  outline-offset: 0.2rem;
+}
+
+/* ---------------------------------------------
+   Projects section
+--------------------------------------------- */
+.projects {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 8% 0 4%;
+}
+
+.projects__title {
+  font-size: clamp(2rem, 5vw + 1rem, 3.4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4em;
+}
+
+.projects__subtitle {
+  font-family: var(--meta);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 2em;
+  padding-bottom: 2em;
+  border-bottom: var(--hairline-width) solid var(--ink);
+}
+
+/* ---------------------------------------------
+   Status
+--------------------------------------------- */
+.status {
+  font-family: var(--meta);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding-bottom: 1rem;
+}
+
+.status[hidden] {
+  display: none;
+}
+
+/* ---------------------------------------------
+   Ledger (repo list)
+--------------------------------------------- */
+.ledger {
+  padding: 0;
+  list-style: none;
+}
+
+.ledger__row {
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  gap: 0 1.25rem;
+  padding: 1.6rem 0;
+  border-bottom: var(--hairline-width) solid var(--hairline);
+}
+
+.ledger__index {
+  font-family: var(--meta);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  padding-top: 0.3em;
+}
+
+.ledger__name {
+  font-size: 1.25rem;
+  margin: 0 0 0.35em;
+}
+
+.ledger__name a {
+  color: var(--ink);
+}
+
+.ledger__name a:hover,
+.ledger__name a:focus {
+  color: var(--accent);
+}
+
+.ledger__description {
+  margin: 0 0 0.6em;
+  color: var(--ink-soft);
+  max-width: 38rem;
+}
+
+.ledger__meta {
+  font-family: var(--meta);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.2em;
+}
+
+/* ---------------------------------------------
+   Colophon
+--------------------------------------------- */
+.colophon {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 0 6rem;
+  font-family: var(--meta);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------
+   Small screens
+--------------------------------------------- */
+@media (max-width: 30rem) {
+  .ledger__row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .ledger__index {
+    padding-top: 0;
+  }
+}
+
+/* ---------------------------------------------
+   Reduced motion
+--------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
