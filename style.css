@@ -2,17 +2,17 @@
    Tokens
 --------------------------------------------- */
 :root {
-  --paper: #EDEAE3;
-  --ink: #1C1B19;
-  --ink-soft: #5A574F;
-  --accent: #2B4570;
-  --hairline: #C9C4B8;
+  --paper: #FAFAF8;
+  --ink: #1A1A1A;
+  --ink-soft: #666666;
+  --accent: #6B1729;
+  --accent-soft: #f2e9eb;
+  --hairline: #DDDDDD;
 
-  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  --meta: "Courier New", Courier, monospace;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --hairline-width: 0.0625rem; /* 1px equivalent, expressed relatively */
-  --max-width: 48rem;
+  --hairline-width: 0.0625rem;
+  --max-width: 42rem;
   --gutter: 6%;
 }
 
@@ -21,27 +21,20 @@
 }
 
 html {
-  font-size: 100%; /* respects user's browser default */
+  font-size: 100%; 
 }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--serif);
-  line-height: 1.5;
+  font-family: var(--font);
+  line-height: 1.6;
   padding: 0 var(--gutter);
 }
 
 a {
   color: var(--accent);
-  text-decoration-thickness: 0.05em;
-  text-underline-offset: 0.15em;
-}
-
-a:hover,
-a:focus {
-  text-decoration-thickness: 0.1em;
 }
 
 a:focus-visible {
@@ -59,27 +52,37 @@ a:focus-visible {
 }
 
 .projects__title {
-  font-size: clamp(2rem, 5vw + 1rem, 3.4rem);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin: 0 0 0.4em;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.5em;
+  position: relative;
+  padding-left: 0.6em;
+}
+
+.projects__title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12em;
+  bottom: 0.12em;
+  width: 0.18em;
+  background: var(--accent);
+  border-radius: 0.1em;
 }
 
 .projects__subtitle {
-  font-family: var(--meta);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--ink-soft);
-  margin: 0 0 2em;
-  padding-bottom: 2em;
-  border-bottom: var(--hairline-width) solid var(--ink);
+  margin: 0 0 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: var(--hairline-width) solid var(--hairline);
 }
 
 /* ---------------------------------------------
    Status
 --------------------------------------------- */
 .status {
-  font-family: var(--meta);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--ink-soft);
   padding-bottom: 1rem;
 }
@@ -97,47 +100,64 @@ a:focus-visible {
 }
 
 .ledger__row {
-  display: grid;
-  grid-template-columns: 3em 1fr;
-  gap: 0 1.25rem;
-  padding: 1.6rem 0;
+  padding: 1.5rem;
+  margin: 0 -1.5rem;
   border-bottom: var(--hairline-width) solid var(--hairline);
+  border-radius: 0.5rem;
+  transition: background 0.15s ease;
+}
+
+.ledger__row:hover {
+  background: var(--accent-soft);
 }
 
 .ledger__index {
-  font-family: var(--meta);
-  color: var(--ink-soft);
-  font-size: 0.85rem;
-  padding-top: 0.3em;
+  display: none;
 }
 
 .ledger__name {
-  font-size: 1.25rem;
-  margin: 0 0 0.35em;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.4em;
 }
 
 .ledger__name a {
   color: var(--ink);
+  text-decoration: none;
 }
 
 .ledger__name a:hover,
 .ledger__name a:focus {
   color: var(--accent);
+  text-decoration: underline;
 }
 
 .ledger__description {
-  margin: 0 0 0.6em;
-  color: var(--ink-soft);
+  margin: 0 0 0.5em;
+  color: var(--ink);
   max-width: 38rem;
 }
 
 .ledger__meta {
-  font-family: var(--meta);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
   display: flex;
   flex-wrap: wrap;
-  gap: 0 1.2em;
+  align-items: center;
+  gap: 0.4em 1em;
+}
+
+.ledger__lang {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ledger__lang-dot {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  margin-right: 0.45em;
 }
 
 /* ---------------------------------------------
@@ -147,23 +167,8 @@ a:focus-visible {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 3rem 0 6rem;
-  font-family: var(--meta);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--ink-soft);
-}
-
-/* ---------------------------------------------
-   Small screens
---------------------------------------------- */
-@media (max-width: 30rem) {
-  .ledger__row {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
-  }
-
-  .ledger__index {
-    padding-top: 0;
-  }
 }
 
 /* ---------------------------------------------

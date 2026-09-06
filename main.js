@@ -4,6 +4,20 @@ const state = {
   repos: [],
 };
 
+const LANGUAGE_COLORS = {
+  JavaScript: "#F1E05A",
+  TypeScript: "#3178C6",
+  Python: "#3572A5",
+  HTML: "#E34C26",
+  CSS: "#563D7C",
+  Swift: "#F05138",
+  Java: "#B07219",
+  "C++": "#F34B7D",
+  C: "#555555",
+  PHP: "#4F5D95",
+  Shell: "#89E051",
+};
+
 const listEl = document.getElementById("repo-list");
 const statusEl = document.getElementById("status");
 
@@ -52,21 +66,26 @@ function render() {
   statusEl.hidden = true;
 
   listEl.innerHTML = repos
-    .map((repo, i) => {
-      const index = String(i + 1).padStart(2, "0");
+    .map((repo) => {
       const description = repo.description || "No description provided.";
-      const language = repo.language || "—";
+      const language = repo.language;
+      const dotColor = LANGUAGE_COLORS[language] || "#999999";
+
+      const languageHtml = language
+        ? `<span class="ledger__lang">
+             <span class="ledger__lang-dot" style="background:${dotColor}"></span>${language}
+           </span>`
+        : "";
 
       return `
         <li class="ledger__row">
-          <span class="ledger__index">${index}</span>
           <div>
             <h2 class="ledger__name">
               <a href="${repo.html_url}" target="_blank" rel="noopener">${repo.name}</a>
             </h2>
             <p class="ledger__description">${description}</p>
             <div class="ledger__meta">
-              <span>${language}</span>
+              ${languageHtml}
               <span>Updated ${formatDate(repo.updated_at)}</span>
             </div>
           </div>
