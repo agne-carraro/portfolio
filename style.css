@@ -16,6 +16,35 @@
   --gutter: 6%;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17161A;
+    --ink: #EDEAE3;
+    --ink-soft: #9C9992;
+    --accent: #862d40;
+    --accent-soft: #2D2325;
+    --hairline: #34333A;
+  }
+}
+
+html[data-theme="light"] {
+  --paper: #FAFAF8;
+  --ink: #1A1A1A;
+  --ink-soft: #666666;
+  --accent: #6B1729;
+  --accent-soft: #f2e9eb;
+  --hairline: #DDDDDD;
+}
+ 
+html[data-theme="dark"] {
+  --paper: #17161A;
+  --ink: #EDEAE3;
+  --ink-soft: #9C9992;
+  --accent: #862d40;
+  --accent-soft: #2D2325;
+  --hairline: #34333A;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -38,6 +67,33 @@ a {
 }
 
 a:focus-visible {
+  outline: 0.125rem solid var(--accent);
+  outline-offset: 0.2rem;
+}
+
+/* ---------------------------------------------
+   Theme toggle
+--------------------------------------------- */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  border: var(--hairline-width) solid var(--hairline);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  padding: 0.5em 0.9em;
+  border-radius: 2em;
+  cursor: pointer;
+}
+ 
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+ 
+.theme-toggle:focus-visible {
   outline: 0.125rem solid var(--accent);
   outline-offset: 0.2rem;
 }

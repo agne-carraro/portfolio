@@ -20,6 +20,29 @@ const LANGUAGE_COLORS = {
 
 const listEl = document.getElementById("repo-list");
 const statusEl = document.getElementById("status");
+const themeToggleEl = document.getElementById("theme-toggle");
+
+function getCurrentTheme() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr) return attr;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function updateToggleLabel() {
+  const current = getCurrentTheme();
+  themeToggleEl.textContent = current === "dark" ? "Light mode" : "Dark mode";
+}
+
+themeToggleEl.addEventListener("click", () => {
+  const next = getCurrentTheme() === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+  updateToggleLabel();
+});
+ 
+updateToggleLabel();
 
 async function fetchRepos() {
   try {
